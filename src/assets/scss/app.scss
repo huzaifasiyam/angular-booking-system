@@ -1,0 +1,32 @@
+// app.scss
+
+// 1. Import Bootstrap's core functions and variables
+//    This is needed for your custom variables file to work correctly with Bootstrap's system.
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+// 2. Import your custom variables file (before Bootstrap).
+//    This allows you to override Bootstrap's default values.
+@import "variables";
+@import "dark-variables";
+
+// 3. Now, import the rest of Bootstrap.
+//    This will use the variables you've just defined (or the Bootstrap defaults).
+@import "bootstrap/scss/bootstrap";
+
+// 4. Finally, import your other custom files.
+//    Now, 'helper' and all other files can access all Bootstrap variables.
+@import "general";
+@import "helper";
+@import "component-styles/forms";
+@import "component-styles/dropdown";
+@import "component-styles/buttons";
+@import "component-styles/modal";
+@import "component-styles/card";
+@import "component-styles/accordion";
+@import "component-styles/badge";
+@import "dark-mode";
+
+body {
+  font-family: $font-family-base !important;
+}

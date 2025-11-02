@@ -1,0 +1,99 @@
+//
+// _card.scss
+//
+// Styles for card components, based on the customer portal's variables.
+//
+
+//
+// -------------------- Card Base Styles --------------------
+//
+
+.card {
+    margin-bottom: $spacer * 1.5; // Using the $spacer map for consistent spacing
+    box-shadow: $card-box-shadow; // Using the dedicated card box-shadow variable
+    background-color: $card-bg;
+    border: $card-border-width solid $card-border-color;
+    border-radius: $card-border-radius;
+}
+
+// Card link color
+.card-drop {
+    color: $body-color;
+}
+
+// Card header styles with color variants
+.card-header {
+    background-color: $card-header-bg;
+    border-bottom: $card-border-width solid $card-border-color;
+    border-radius: $card-border-radius $card-border-radius 0 0;
+}
+
+@mixin card-header-variant($bg) {
+    background-color: lighten($bg, 5%) !important;
+    border-bottom: none;
+}
+
+@each $color, $value in $theme-colors {
+    .card-header.bg-#{$color} {
+        @include card-header-variant($value);
+    }
+}
+
+//
+// -------------------- Card Typography --------------------
+//
+
+.card-title {
+    font-size: $font-size-base * 1.15; // Using a relative font size for better scaling
+    font-weight: $headings-font-weight;
+    margin-bottom: 0;
+}
+
+.card-title-desc {
+    color: $gray-500; // Using a variable from your grayscale palette
+    margin-bottom: $spacer * 1.5;
+}
+
+//
+// -------------------- Card Layout Helpers --------------------
+//
+
+.card-h-100 {
+    // Correct way to calculate height for 100% minus margin
+    height: calc(100% - #{map-get($spacers, 4)});
+}
+
+.card > .list-group {
+    border-top: none;
+    border-bottom: none; 
+}
+
+//
+// -------------------- Dark Mode Styles --------------------
+//
+
+@mixin dark-mode-cards {
+    .card {
+        box-shadow: $box-shadow-lg; // A slightly more pronounced shadow for better contrast
+        background-color: $gray-800; // Using an existing gray variable
+        border-color: $gray-700;
+    }
+
+    .card,
+    .card-header,
+    .card-footer,
+    .modal-content,
+    .offcanvas {
+        background-color: $gray-900;
+        border-color: $gray-700;
+    }
+
+    .card-title-desc {
+        color: $gray-500;
+    }
+}
+
+// Apply dark mode mixin
+body[data-layout-mode="dark"] {
+    @include dark-mode-cards;
+}

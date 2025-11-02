@@ -1,0 +1,185 @@
+//
+// helper.scss
+//
+
+// Bootstrap dependencies (needed for $btn-close-bg-dark, $btn-close-width, $gray-*, etc.)
+
+// Custom variables
+@import "variables";
+
+// -------------------- Mixins & Functions (Utility) --------------------
+
+// Stretch-to-fit mixin
+@mixin stretch-to-fit {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+// The dark mode styles are now encapsulated within a single mixin
+// for cleaner use across your main stylesheet.
+// @mixin dark-mode-styles {
+//   .btn-close {
+//     background: transparent escape-svg($btn-close-bg-dark) center / $btn-close-width auto no-repeat;
+//   }
+
+//   // Border colors for dark mode
+//   .border-bottom {
+//     border-bottom-color: $gray-800 !important; // Replaced hardcoded gray with a variable
+//   }
+
+//   .border-top,
+//   .border,
+//   .list-group-item {
+//     border-color: $gray-800 !important;
+//   }
+
+//   .list-group-item {
+//     background-color: $gray-900;
+//     color: $gray-200;
+//   }
+
+//   // Text colors for dark mode
+//   .text-dark {
+//     color: $gray-100 !important;
+//   }
+
+//   .text-muted {
+//     color: $gray-500 !important;
+//   }
+
+//   .text-body {
+//     color: $gray-400 !important;
+//   }
+
+//   // Other component styles for dark mode
+//   .img-thumbnail {
+//     background-color: lighten($gray-900, 2.5%);
+//     border-color: $gray-800;
+//   }
+  
+//   .popover-header {
+//     color: $gray-200;
+//   }
+  
+//   .social-list-item {
+//     border-color: $gray-700;
+//     color: $gray-400;
+//     &:hover {
+//       color: $gray-100;
+//     }
+//   }
+// }
+
+//
+// -------------------- Typography Helpers --------------------
+//
+
+// Font size utility classes using a Sass map
+// Instead of hardcoding, we loop through a map to generate these classes.
+$font-sizes: (
+  10: 10px,
+  11: 11px,
+  12: 12px,
+  13: 13px,
+  14: 14px,
+  15: 15px,
+  16: 16px,
+  17: 17px,
+  18: 18px,
+  20: 20px,
+  22: 22px,
+  24: 24px,
+  26: 26px
+);
+
+@each $size, $value in $font-sizes {
+  .font-size-#{$size} {
+    font-size: $value !important;
+  }
+}
+
+// Font weight utility classes
+.fw-medium {
+  font-weight: $font-weight-medium;
+}
+
+.fw-semibold {
+  font-weight: $font-weight-semibold;
+}
+
+//
+// -------------------- Layout & Component Helpers --------------------
+//
+
+// Background overlay utility
+.bg-overlay {
+  position: absolute;
+  @include stretch-to-fit; // Custom mixin for top/right/bottom/left: 0
+  opacity: .7;
+  background-color: $black;
+}
+
+// Width utility classes using a Sass map
+$min-widths: (
+  xs: 80px,
+  sm: 95px,
+  md: 110px,
+  lg: 140px,
+  xl: 160px
+);
+
+@each $suffix, $value in $min-widths {
+  .w-#{$suffix} {
+    min-width: $value;
+  }
+}
+
+// Social list item for consistent icon sizing and styling
+.social-list-item {
+  height: 2.4rem;
+  width: 2.4rem;
+  line-height: calc(2.4rem - 2px);
+  display: block;
+  border: 1px solid $card-bg;
+  border-radius: 50%;
+  color: $gray-500; // Using a proper variable from your palette
+  text-align: center;
+  transition: $transition-base;
+  
+  &:hover {
+    color: $dark;
+    background-color: lighten($dark, 70%); // Add a hover background for better feedback
+    border-color: lighten($dark, 60%);
+  }
+}
+
+//
+// -------------------- Percentage-Based Layout Helpers --------------------
+//
+
+// Generate height utility classes (e.g., h-25, h-50, h-75)
+@for $i from 5 through 100 {
+  .h-#{$i} {
+    height: #{$i}#{"%"} !important;
+  }
+}
+
+// Generate width utility classes (e.g., w-25, w-50, w-75)
+@for $i from 5 through 100 {
+  .w-#{$i} {
+    width: #{$i}#{"%"} !important;
+  }
+}
+
+//
+// -------------------- Dark Mode & Theming --------------------
+//
+
+
+
+// Apply dark mode mixin
+// body[data-layout-mode="dark"] {
+//   @include dark-mode-styles;
+// }

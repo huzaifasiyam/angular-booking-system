@@ -1,0 +1,198 @@
+//
+// _buttons.scss
+//
+// Styles for buttons, based on the customer portal's variables.
+//
+
+// Base styles for all buttons and links
+button,
+a {
+    outline: none !important;
+}
+
+// Ensure proper color for the warning button
+.btn-warning {
+    color: $white !important;
+}
+
+//
+// -------------------- Soft Buttons --------------------
+//
+
+// Soft button variant mixin
+@mixin button-variant-soft($bg) {
+    color: $bg;
+    background-color: rgba($bg, 0.1);
+    border-color: transparent;
+    transition: $transition-base;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $white;
+        background-color: $bg;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 $btn-focus-width rgba($bg, 0.5);
+    }
+}
+
+// Generate soft button classes for all theme colors
+@each $color, $value in $theme-colors {
+    .btn-soft-#{$color} {
+        @include button-variant-soft($value);
+    }
+}
+
+// Specific soft light button override
+.btn-soft-light {
+    color: $gray-600;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $gray-800;
+    }
+}
+
+//
+// -------------------- Outline Buttons --------------------
+//
+
+.btn-outline-light {
+    color: $dark;
+    border-color: $gray-400;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $primary;
+        border-color: $primary;
+        background-color: $light;
+    }
+
+    &.active {
+        color: $primary;
+        border-color: $primary;
+        background-color: $light;
+    }
+}
+
+// New btn Custom solution for dark backgrounds
+.btn-outline-white {
+    color: $white;
+    border-color: $white;
+
+    &:hover,
+    &:focus,
+    &:active {
+        border-color: $primary;
+        color: $primary;
+        background-color: $white;
+    }
+}
+
+//
+// -------------------- Split Dropdown Buttons --------------------
+//
+
+// Split dropdown variant mixin
+@mixin button-variant-split($bg) {
+    background-color: lighten($bg, 5%);
+    border: none;
+}
+
+// Generate split dropdown classes for all theme colors
+@each $color, $value in $theme-colors {
+    .btn-#{$color}.dropdown-toggle-split {
+        @include button-variant-split($value);
+    }
+}
+
+// Specific split dropdown for light buttons
+.btn-light.dropdown-toggle-split {
+    background-color: darken($light, 3%);
+}
+
+//
+// -------------------- Button Sizing and Shape --------------------
+//
+
+// Rounded Buttons
+.btn-rounded {
+    border-radius: $border-radius-pill;
+}
+
+//
+// -------------------- Dark Mode Styles --------------------
+//
+
+// Buttons for dark mode are now in a dedicated mixin
+@mixin dark-mode-buttons {
+    .btn-light {
+        color: $gray-600;
+        background-color: $gray-800;
+        border-color: $gray-800 !important;
+    }
+
+    .btn-outline-light {
+        color: $gray-500;
+        border-color: $gray-700;
+
+        &:hover {
+            color: $gray-100;
+            background-color: $gray-700;
+            border-color: $gray-700;
+        }
+         &.active {
+            background-color: rgba($primary, 0.25) !important;
+            border-color: $primary !important;
+            color: $primary !important;
+        }
+    }
+
+    // Using a loop to handle focus styles for both light and dark buttons
+    @each $button-color in "light", "dark", "outline-light", "outline-dark" {
+
+        .btn-check:focus+.btn-#{$button-color},
+        .btn-#{$button-color}:focus {
+            box-shadow: 0 0 0 $btn-focus-width rgba($gray-600, .5);
+        }
+    }
+
+    // Soft and outline dark buttons
+    .btn-soft-dark,
+    .btn-outline-dark {
+        color: $gray-400;
+    }
+
+    .btn-dark {
+        background-color: $gray-800;
+        border-color: $gray-800;
+    }
+
+    .btn-outline-dark {
+        border-color: $gray-700;
+
+        &:hover {
+            background-color: $gray-700;
+            border-color: $gray-700;
+        }
+    }
+
+    .btn-soft-dark {
+        background-color: rgba($gray-700, 0.25);
+        border-color: rgba($gray-700, 0.25);
+
+        &:hover {
+            background-color: $gray-700;
+            border-color: $gray-700;
+        }
+    }
+}
+
+// Apply dark mode mixin
+body[data-layout-mode="dark"] {
+    @include dark-mode-buttons;
+}

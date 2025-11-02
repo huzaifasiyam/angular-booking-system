@@ -1,0 +1,88 @@
+<form [formGroup]="bookingForm">
+  <div class="modal-header">
+    <h5 class="modal-title">
+      <ng-container *ngIf="isEditing">
+        {{ 'EDIT' | translate }}
+      </ng-container>
+      <ng-container *ngIf="!isEditing">
+        {{ 'BOOK' | translate }}
+      </ng-container>
+      <strong class="text-primary">{{ selectedService?.listValue }}</strong>
+    </h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+  </div>
+
+  <div class="modal-body">
+    <div class="mb-4">
+      <h6 class="fw-semibold mb-2">1. {{ 'SELECT AN ARTIST' | translate }}</h6>
+      <div class="d-flex gap-2 artist-scroll-container">
+        <button
+          type="button"
+          class="btn artist-chip-button btn-outline-light rounded-pill"
+          [class.active]="bookingForm.get('artist')?.value?.listId === 0"
+          (click)="bookingForm.patchValue({ artist: { listId: 0, listValue: 'Any' } })"
+        >
+          {{ 'ANY ARTIST' | translate }}
+        </button>
+        <button
+          *ngFor="let artist of therapists"
+          type="button"
+          class="btn artist-chip-button btn-outline-light rounded-pill d-flex align-items-center"
+          [class.active]="bookingForm.get('artist')?.value?.listId === artist.listId"
+          (click)="bookingForm.patchValue({ artist: artist })"
+        >
+          <i class="fa-solid" [ngClass]="artist.genderId>1? 'fa-user-doctor-hair-long': 'fa-user-doctor'"></i>
+          {{ artist.listValue }}
+        </button>
+      </div>
+      <div *ngIf="bookingForm.get('artist')?.touched && bookingForm.get('artist')?.invalid" class="text-danger small mt-1">
+        REQUIRED
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <h6 class="fw-semibold mb-2">2. {{ 'SELECT DATE' | translate }}</h6>
+        <input
+          class="form-control"
+          mwlFlatpickr
+          formControlName="date"
+          [options]="flatPickerOptions"
+        />
+        <div *ngIf="bookingForm.get('date')?.touched && bookingForm.get('date')?.invalid" class="text-danger small mt-1">
+          REQUIRED
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <h6 class="fw-semibold mb-2">3. {{ 'SELECT TIME' | translate }}</h6>
+        <app-custom-time-picker
+          formControlName="time"
+          [selectedDate]="bookingForm.get('date')?.value ? bookingForm.get('date')?.value : null"
+        ></app-custom-time-picker>
+        <div *ngIf="bookingForm.get('time')?.touched && bookingForm.get('time')?.invalid" class="text-danger small mt-1">
+          REQUIRED
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="close()">
+      {{ 'CANCEL' | translate }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="bookingForm.invalid"
+      (click)="submit()"
+    >
+      <ng-container *ngIf="isEditing">
+        {{ 'UPDATE BOOKING' | translate }}
+      </ng-container>
+      <ng-container *ngIf="!isEditing">
+        {{ 'ADD TO CART' | translate }}
+      </ng-container>
+    </button>
+  </div>
+</form>

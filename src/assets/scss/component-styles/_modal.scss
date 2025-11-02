@@ -1,0 +1,44 @@
+// _modal.scss
+
+// Keyframes
+@keyframes modal-pop-in {
+  0%   { opacity: 0; transform: scale(0.7); }
+  60%  { opacity: 1; transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes modal-pop-out {
+  0%   { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.7); }
+}
+
+/* Initial hidden state ONLY when modal has .fade but not .show */
+.modal.fade:not(.show) .modal-dialog {
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+/* Opening animation */
+.modal.fade.show .modal-dialog {
+  animation: modal-pop-in 380ms cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+/* Closing animation */
+.modal.fade:not(.show) .modal-dialog {
+  animation: modal-pop-out 220ms ease forwards;
+}
+
+// Fixed max-height and scrolling for modal body
+.modal-body {
+  max-height: 80vh; /* Set a maximum height relative to the viewport height */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
+}
+
+
+/* keep other styling as you had */
+ .modal-content {
+  background-color: $card-bg;
+  border-radius: $card-border-radius;
+  border: $card-border-width solid $card-border-color;
+  box-shadow: $box-shadow-lg;
+}

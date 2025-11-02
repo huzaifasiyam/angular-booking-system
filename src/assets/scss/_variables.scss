@@ -1,0 +1,206 @@
+// src/assets/scss/_variables.scss
+// Core variables — reorder carefully: functions/fonts -> colors -> spacing -> typography -> components
+
+//
+// -------------------- Fonts (font-face) --------------------
+// (Using absolute /assets path; Angular serves /assets/... so this works)
+@font-face {
+  font-family: 'Poppins';
+  src: url('/assets/fonts/woff2/Poppins-Light.woff2') format('woff2'),
+       url('/assets/fonts/woff/Poppins-Light.woff') format('woff'),
+       url('/assets/fonts/eot/Poppins-Light.eot?#iefix') format('embedded-opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('/assets/fonts/woff2/Poppins-Medium.woff2') format('woff2'),
+       url('/assets/fonts/woff/Poppins-Medium.woff') format('woff'),
+       url('/assets/fonts/eot/Poppins-Medium.eot?#iefix') format('embedded-opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('/assets/fonts/woff2/Poppins-Bold.woff2') format('woff2'),
+       url('/assets/fonts/woff/Poppins-Bold.woff') format('woff'),
+       url('/assets/fonts/eot/Poppins-Bold.eot?#iefix') format('embedded-opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+//
+// -------------------- Base font families --------------------
+$font-family-base: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-primary: $font-family-base;
+$font-secondary: 'Poppins', $font-family-base; // keep same family; you can change to another if needed
+
+//
+// -------------------- Colors --------------------
+$white: #ffffff;
+$black: #000000;
+
+// Grayscale
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+
+// Base semantic colors
+$primary: #1b9d8e;
+$primary-100: #e0f2f1; 
+$secondary: #222b45;
+$success: #28a745;
+$info: #17a2b8;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: $gray-100;
+$dark: $gray-800;
+
+// Utility colors used in general.scss
+$muted: $gray-500;
+$darker: darken($dark, 6%);
+
+// Bootstrap theme-colors map (Bootstrap will respect these if imported before bootstrap)
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark
+);
+
+//
+// -------------------- Spacing & Borders --------------------
+$spacer: 1rem; // base spacing (16px)
+$spacers: (
+  0: 0,
+  1: ($spacer * 0.25), // 4px
+  2: ($spacer * 0.5),  // 8px
+  3: $spacer,          // 16px
+  4: ($spacer * 1.5),  // 24px
+  5: ($spacer * 3)     // 48px
+);
+
+$border-width: 1px;
+$border-color: $gray-300;
+$border-radius: 0.5rem; // 8px
+$border-radius-lg: 1rem;
+$border-radius-pill: 50rem;
+
+//
+// -------------------- Typography & Sizing --------------------
+$font-size-base: 0.9rem; // ~14.4px
+$line-height-base: 1.5;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$headings-font-weight: $font-weight-bold;
+$headings-line-height: 1.2;
+$headings-margin-bottom: ($spacer * 0.5);
+
+$h1-font-size: 2.2rem;
+$h2-font-size: 1.75rem;
+$h3-font-size: 1.375rem;
+$h4-font-size: 1.125rem;
+$h5-font-size: 1rem;
+$h6-font-size: 0.95rem;
+
+//
+// -------------------- Box Shadows --------------------
+$box-shadow: 0 0.125rem 0.25rem rgba($black, 0.075);
+$box-shadow-sm: 0 0.05rem 0.1rem rgba($black, 0.05);
+$box-shadow-lg: 0 0.5rem 1rem rgba($black, 0.15);
+
+//
+// -------------------- Transitions --------------------
+$transition-base: all .2s ease-in-out;
+
+//
+// -------------------- Body & Container --------------------
+$body-bg: $white;
+$body-color: $gray-700;
+$container-max-width: 1320px;
+
+//
+// -------------------- Forms & Inputs --------------------
+$input-padding-y: 0.5rem;
+$input-padding-x: 1rem;
+$input-font-size: $font-size-base;
+$input-line-height: $line-height-base;
+$input-bg: $white;
+$input-color: $gray-800;
+$input-border-width: $border-width;
+$input-border-color: $gray-300;
+$input-border-radius: $border-radius;
+$input-focus-border-color: rgba($primary, 0.6);
+$input-focus-box-shadow: 0 0 0 .25rem rgba($primary, 0.15);
+$input-placeholder-color: $gray-500;
+
+$form-check-input-border-width: 1px;
+$form-check-input-border-radius: .25em;
+
+$form-label-font-weight: $font-weight-semibold;
+
+//
+// -------------------- Buttons --------------------
+$btn-padding-y: 0.6rem;
+$btn-padding-x: 1.2rem;
+$btn-font-weight: $font-weight-semibold;
+$btn-border-width: $border-width;
+$btn-border-radius: $border-radius;
+$btn-box-shadow: $box-shadow-sm;
+$btn-disabled-opacity: 0.65;
+
+//
+// -------------------- Cards --------------------
+$card-bg: $white;
+$card-border-width: $border-width;
+$card-border-color: $gray-300;
+$card-border-radius: $border-radius-lg;
+$card-box-shadow: $box-shadow;
+$card-header-bg: $gray-100;
+$card-footer-bg: $gray-100;
+
+//
+// -------------------- Nav / Navbar --------------------
+$nav-link-padding-y: 0.5rem;
+$nav-link-padding-x: 1rem;
+$nav-link-color: $gray-700;
+$nav-link-hover-color: $primary;
+$nav-link-disabled-color: $gray-500;
+$nav-tabs-border-color: $gray-300;
+$nav-tabs-link-active-color: $secondary;
+$nav-tabs-link-active-bg: $white;
+
+$navbar-padding-y: 1rem;
+$navbar-padding-x: 1.5rem;
+$navbar-bg: $white;
+$navbar-color: $gray-800;
+$navbar-brand-font-size: 1.5rem;
+
+//
+// -------------------- Z-index --------------------
+$zindex-tooltip: 1080;
+$zindex-popover: 1070;
+$zindex-modal: 1060;
+$zindex-offcanvas: 1050;
+$zindex-modal-backdrop: 1040;
+$zindex-fixed: 1030;
+$zindex-sticky: 1020;
+$zindex-dropdown: 1000;

@@ -1,0 +1,133 @@
+@import "dark-variables";
+.navbar-toggler {
+  border: none;
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.offcanvas,
+.offcanvas-backdrop {
+  z-index: 1060 !important;
+}
+
+.offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%; // fill full offcanvas height
+  padding-bottom: 1rem;
+}
+
+.offcanvas-body .list-group {
+  flex-grow: 1;
+  overflow-y: auto; // scrollable
+}
+
+.offcanvas-bottom-section {
+  border-top: 1px solid #dee2e6; // optional separator
+  padding-top: 1rem;
+}
+
+:host-context(body[data-layout-mode="dark"]) {
+  // Navbar
+  .navbar {
+    background-color: $navbar-bg-dark !important;
+    .navbar-brand,
+    .nav-link {
+      color: $gray-800-dark !important;
+    }
+  }
+
+  // Navbar Toggler
+  .navbar-toggler {
+    // This filter is a standard trick to make the icon white in dark mode.
+    filter: invert(1) grayscale(100%) brightness(200%);
+    opacity: 0.8;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // Offcanvas Mobile Menu
+  .offcanvas {
+    background-color: $card-bg-dark !important;
+    border-color: $card-border-color-dark !important;
+    color: $gray-800-dark !important;
+    
+    .offcanvas-header {
+      border-bottom: 1px solid $card-border-color-dark;
+      .offcanvas-title {
+        color: $gray-900-dark;
+      }
+      .btn-close {
+        filter: invert(1) grayscale(100%) brightness(200%);
+        opacity: 0.8;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .offcanvas-body {
+      .bg-light { // For the profile info box
+        background-color: $gray-100-dark !important;
+        color: $gray-900-dark !important;
+        
+        small.text-muted {
+          color: $gray-600-dark !important;
+        }
+      }
+      
+      .list-group-item {
+        background-color: transparent !important;
+        color: $gray-800-dark;
+        .fa {
+          color: $gray-800-dark; // Keep icon color readable
+        }
+        &:hover {
+          background-color: $gray-200-dark !important;
+        }
+      }
+
+      hr {
+        border-color: $card-border-color-dark;
+      }
+
+      .btn-outline-light, .btn-light {
+        background-color: $gray-300-dark !important;
+        border-color: $gray-500-dark !important;
+        color: $gray-900-dark !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 991.98px) {
+  /*
+    * This media query targets devices smaller than `lg` (992px),
+    * which is when the offcanvas menu is typically used.
+    */
+  .offcanvas.offcanvas-end {
+    width: 35% !important;
+  }
+
+  .offcanvas-end {
+    right: 0;
+    transform: translateX(100%);
+  }
+
+  .offcanvas-start {
+    left: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 767.98px) {
+  /* For smaller devices like phones */
+  .offcanvas.offcanvas-end {
+    width: 70% !important;
+  }
+}
+
+
+

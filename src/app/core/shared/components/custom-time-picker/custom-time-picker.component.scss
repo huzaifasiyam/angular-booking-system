@@ -1,0 +1,191 @@
+@import "variables";
+@import "dark-variables";
+.custom-time-picker {
+  border: 1px solid $gray-300;
+  border-radius: $border-radius;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 350px;
+
+  .time-picker-header {
+    background-color: $primary;
+    color: $white;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    font-weight: $font-weight-medium;
+  }
+
+.time-picker-search {
+  background: $gray-100;
+  border-bottom: 1px solid $gray-300;
+
+  .input-group {
+    border-radius: $border-radius-pill;
+    overflow: hidden;
+    background: $white;
+    box-shadow: $box-shadow-sm;
+
+    .input-group-text {
+      background: $white;
+      border: none;
+      color: $primary;
+      font-size: 0.9rem;
+    }
+
+    input.form-control {
+      border: none;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+
+      &::placeholder {
+        color: $gray-500;
+        font-size: 0.85rem;
+      }
+    }
+  }
+}
+
+  .time-picker-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $gray-400;
+      border-radius: 10px;
+    }
+  }
+
+  .time-slot-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid $gray-200;
+    background-color: $white;
+    transition: background-color 0.2s ease;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: $gray-100;
+    }
+
+    &.active {
+      background-color: $primary-100;
+      font-weight: 500;
+      .radio-circle {
+        border-color: $primary;
+        &::after {
+          background-color: $primary;
+        }
+      }
+    }
+  }
+
+  .radio-circle {
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid $gray-500;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background-color: transparent;
+      transition: background-color 0.2s ease;
+    }
+  }
+
+  .no-slots {
+    font-size: 0.85rem;
+  }
+
+  .time-picker-footer {
+    padding: 0.5rem 1rem;
+    background-color: $gray-200;
+    color: $gray-700;
+  }
+}
+
+:host-context(body[data-layout-mode="dark"]) {
+  .custom-time-picker {
+    border: 1px solid $card-border-color-dark;
+    background-color: $card-bg-dark;
+    .time-picker-header {
+      background-color: $primary !important;
+      color: $white !important;
+    }
+    .time-picker-search {
+      background: $gray-100-dark;
+      border-bottom: 1px solid $card-border-color-dark;
+      .input-group-text {
+          // background: $input-bg-dark;
+          color: $primary !important;
+        }
+      // .input-group {
+      //   background: $input-bg-dark;
+      //   box-shadow: none;
+      //   
+      //   input.form-control {
+      //     background: transparent;
+      //     color: $gray-900-dark !important;
+      //     &::placeholder {
+      //       color: lighten($input-placeholder-color-dark, 20%) !important;
+      //     }
+      //   }
+      // }
+    }
+    .time-picker-body {
+      background: $card-bg-dark;
+      .time-slot-item {
+        background-color: transparent;
+        border-bottom: 1px solid $card-border-color-dark;
+        color: $gray-900-dark !important;
+        &:hover {
+          background-color: $gray-200-dark;
+        }
+        &.active {
+          background-color: rgba($primary, 0.15) !important;
+          color: $primary !important;
+          font-weight: 500;
+          .radio-circle {
+            border-color: $primary;
+            &::after {
+              background-color: $primary;
+            }
+          }
+        }
+      }
+    }
+    .radio-circle {
+      border: 1px solid $gray-400-dark !important;
+    }
+    .no-slots {
+      color: $gray-700-dark !important;
+    }
+    .time-picker-footer {
+      background-color: $gray-200-dark !important;
+      color: $gray-800-dark !important;
+    }
+  }
+}

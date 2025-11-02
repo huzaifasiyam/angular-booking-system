@@ -1,0 +1,49 @@
+// Import the necessary Bootstrap and custom variables/mixins
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "variables";
+
+.hero-section {
+  position: relative;
+  background-image: url('../../../assets/images/home/Home\ 4.png'); // You'll need to add a similar image
+  background-size: cover;
+  background-position: center;
+  min-height: 80vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba($black, 0.45);
+    z-index: 0;
+  }
+}
+
+.icon-circle {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: lighten($primary, 40%);
+}
+
+.features-section .card {
+  transition: all 0.3s ease-in-out;
+  border: 1px solid $gray-200;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $box-shadow-lg;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .hero-section {
+    min-height: 70vh;
+  }
+}

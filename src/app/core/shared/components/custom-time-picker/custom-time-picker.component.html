@@ -1,0 +1,49 @@
+<div class="custom-time-picker">
+  <!-- Header -->
+  <div class="time-picker-header bg-theme">
+    <span *ngIf="selectedDate">
+      {{ 'SELECT TIME FOR' | translate }} {{ selectedDate | date: 'EEE, yyyy MMM dd' }}
+    </span>
+    <span *ngIf="!selectedDate">
+      {{ 'SELECT TIME' | translate }}
+    </span>
+  </div>
+
+  <!-- Time Search Box -->
+  <div class="time-picker-search p-2">
+    <div class="input-group input-group-sm">
+      <span class="input-group-text">
+        <i class="fa-regular fa-clock"></i>
+      </span>
+      <input
+        type="text"
+        class="form-control text-center"
+        [placeholder]="'TYPE A TIME PLACEHOLDER' | translate"
+        [(ngModel)]="searchTerm"
+        (input)="filterSlots()"
+      />
+    </div>
+  </div>
+
+  <!-- Scrollable Body -->
+  <div class="time-picker-body">
+    <div
+      *ngFor="let slot of filteredSlots"
+      class="time-slot-item"
+      [class.active]="value === slot"
+      (click)="selectSlot(slot)"
+    >
+      <span>{{ slot }}</span>
+      <span class="radio-circle"></span>
+    </div>
+
+    <div *ngIf="filteredSlots.length === 0" class="no-slots text-muted text-center py-3">
+      {{ 'NO MATCHING TIME FOUND' | translate }}
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="time-picker-footer bg-theme-light text-center small">
+    {{ 'SCROLL TO SEE MORE TIME SLOTS' | translate }}
+  </div>
+</div>

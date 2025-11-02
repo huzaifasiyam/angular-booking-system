@@ -1,0 +1,27 @@
+<div class="form-group" [ngClass]="ngClass">
+  <div class="input-group mobile-input-group">
+    <ng-select class="ng-select-code"
+      [items]="countryCodes"
+      bindLabel="dialCode"
+      bindValue="dialCode"
+      [(ngModel)]="countryCode"
+      (ngModelChange)="updateValue()"
+      [searchable]="true"
+      [clearable]="false"
+      placeholder="+91"
+      id="countryCode">
+      <ng-template ng-label-tmp let-item="item">
+        <span>{{ item.dialCode }}</span>
+      </ng-template>
+      <ng-template ng-option-tmp let-item="item" let-index="index">
+        <span class="country-option">{{ item.dialCode }} <span class="country-name">({{ item.country }})</span></span>
+      </ng-template>
+    </ng-select>
+
+    <input type="tel"
+      class="form-control"
+      [placeholder]="'MOBILE NUMBER PLACEHOLDER' | translate"
+      [(ngModel)]="mobileNumber"
+      (ngModelChange)="updateValue()" />
+  </div>
+</div>

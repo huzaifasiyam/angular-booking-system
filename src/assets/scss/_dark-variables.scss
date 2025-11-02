@@ -1,0 +1,51 @@
+// src/assets/scss/_dark-variables.scss
+//
+// Dark Mode specific variables
+
+// --- Body & Backgrounds ---
+$body-bg-dark: #121212; // A deep, but not pure, black for backgrounds
+$body-color-dark: #e0e0e0; // A soft white for text
+$card-bg-dark: #1e1e1e; // Slightly lighter than the body for contrast
+$card-border-color-dark: #333;
+$modal-bg-dark: #1e1e1e;
+$offcanvas-bg-dark: #1e1e1e;
+
+// --- Grayscale ---
+$gray-100-dark: #2c2c2c;
+$gray-200-dark: #3a3a3a;
+$gray-300-dark: #444;
+$gray-400-dark: #555;
+$gray-500-dark: #777;
+$gray-600-dark: #999;
+$gray-700-dark: #ccc;
+$gray-800-dark: #e0e0e0;
+$gray-900-dark: #f0f0f0;
+
+// --- Components ---
+$navbar-bg-dark: #1a1a1a;
+$list-group-bg-dark: #1e1e1e;
+$list-group-item-bg-dark: transparent; // Use transparent for individual items to show the parent background
+$list-group-item-border-dark: #333;
+$nav-tabs-bg-dark: $body-bg-dark;
+$nav-tabs-link-active-bg-dark: #2c2c2c;
+
+// --- Forms ---
+$input-bg-dark: #2c2c2c;
+$input-color-dark: #e0e0e0;
+$input-border-color-dark: #444;
+$input-placeholder-color-dark: #777;
+$form-check-input-bg-dark: #444;
+
+// --- Buttons ---
+$btn-light-bg-dark: #2c2c2c;
+$btn-light-color-dark: #e0e0e0;
+$btn-light-border-dark: #444;
+$btn-outline-light-color-dark: #ccc;
+$btn-outline-light-border-dark: #444;
+$btn-outline-light-hover-bg-dark: #444;
+$btn-outline-light-hover-color-dark: #e0e0e0;
+
+// --- Scrollbar ---
+$scrollbar-thumb-bg-dark: #444;
+$scrollbar-track-bg-dark: #2c2c2c;
+$scrollbar-thumb-hover-bg-dark: #666;

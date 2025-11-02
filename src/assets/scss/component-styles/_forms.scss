@@ -1,0 +1,323 @@
+//
+// _forms.scss
+//
+// Styles for form elements, based on customer portal variables.
+//
+
+//
+// -------------------- Form Controls --------------------
+//
+
+// General placeholder alignment for form controls
+[type='tel'],
+[type='url'],
+[type='email'],
+[type='number'] {
+    &::placeholder {
+        text-align: left /*rtl: right*/;
+    }
+}
+
+// Global styles for disabled form controls
+.form-control {
+    &.disabled {
+        background-color: $gray-200 !important;
+        border-color: $gray-300 !important;
+        opacity: 1;
+    }
+}
+
+.form-control.is-invalid {
+    border-color: $danger !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right calc(0.375em + 0.1875rem) center !important;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem) !important;
+}
+
+//
+// -------------------- Checkboxes & Radios --------------------
+//
+
+// Base styles for form checks (checkboxes and radios)
+.form-check {
+    position: relative;
+    text-align: left /*rtl: right*/;
+    cursor: pointer;
+    margin-bottom: 0;
+
+    .form-check-input,
+    .form-check-label {
+        cursor: pointer;
+    }
+}
+
+// Checkbox input right-aligned
+.form-check-right {
+    padding-left: 0;
+    display: inline-block;
+    
+    // Using a spacer variable for padding
+    padding-right: $spacer * 1; 
+
+    .form-check-input {
+        float: right;
+        margin-left: 0;
+        margin-right: -($spacer * 1); 
+    }
+
+    .form-check-label {
+        display: block;
+    }
+}
+
+// Set base checked color for all form-check-inputs
+.form-check-input:checked {
+    background-color: $primary !important;
+    border-color: $primary !important;
+}
+
+// Correctly set the background image for checked checkboxes and radios
+// to ensure the icon is visible against the primary background.
+.form-check-input[type="checkbox"]:checked {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e") !important;
+}
+
+.form-check-input[type="radio"]:checked {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e") !important;
+}
+
+
+// Outline style for checkboxes
+.form-checkbox-outline {
+    .form-check-input {
+        border-width: 2px;
+        background-color: $card-bg;
+
+        &:active {
+            filter: none;
+        }
+
+        &:checked {
+            background-color: $card-bg !important;
+            
+            &[type='checkbox'] {
+                background-image: none;
+            }
+
+            // MDI icon for a checkmark
+            &:after {
+                position: absolute;
+                content: '\F012C';
+                font-family: 'Material Design Icons';
+                top: -4px !important;
+                left: 1px; /*rtl: -4px */
+                font-size: 16px;
+                color: $dark;
+            }
+        }
+    }
+}
+
+// Outline style for radios
+.form-radio-outline {
+    .form-check-input {
+        border-width: 2px;
+        background-color: $card-bg;
+
+        &:active {
+            filter: none;
+        }
+
+        &:checked {
+            background-color: $card-bg !important;
+            
+            &[type='radio'] {
+                background-image: none;
+            }
+            
+            // MDI icon for a radio button
+            &:after {
+                position: absolute;
+                content: '\F0765';
+                font-family: 'Material Design Icons';
+                top: 6px !important;
+                left: 4px;
+                font-size: 6px;
+                color: $dark;
+            }
+        }
+    }
+}
+
+// Color variations for checkboxes and radios
+@each $color, $value in $theme-colors {
+    .form-check-#{$color} {
+        .form-check-input {
+            &:checked {
+                background-color: $value;
+                border-color: $value;
+            }
+        }
+    }
+
+    .form-radio-#{$color} {
+        .form-check-input {
+            &:checked {
+                border-color: $value;
+                background-color: $value;
+            }
+        }
+    }
+}
+
+//
+// -------------------- Form Switches --------------------
+//
+
+// Sizing variations for form switches
+.form-switch-md {
+    font-size: 20px;
+    min-height: 26px;
+    line-height: 26px;
+
+    .form-check-label {
+        font-size: $font-size-base;
+        vertical-align: middle;
+    }
+}
+
+.form-switch-lg {
+    font-size: 26px;
+    min-height: 36px;
+    line-height: 36px;
+    
+    .form-check-label {
+        font-size: $font-size-base;
+        vertical-align: middle;
+    }
+}
+
+//
+// -------------------- Input Groups --------------------
+//
+
+.input-group-text {
+    margin-bottom: 0;
+    // Using variables for consistent styling
+    background-color: $gray-200;
+    border: 1px solid $gray-300;
+}
+
+//
+// -------------------- Card Radios --------------------
+//
+
+.card-radio {
+    background-color: $card-bg;
+    border: 2px solid $card-border-color;
+    border-radius: $border-radius;
+    padding: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: $transition-base;
+
+    &:hover {
+        cursor: pointer;
+        border-color: tint-color($card-border-color, 30%);
+    }
+}
+
+.card-radio-label {
+    display: block;
+}
+
+.card-radio-input {
+    display: none;
+    
+    &:checked + .card-radio {
+        border-color: $primary !important;
+        box-shadow: $box-shadow-sm;
+    }
+}
+
+//
+// -------------------- Dark Mode Styles --------------------
+//
+
+// Using a mixin for dark mode styles
+@mixin dark-mode-forms {
+    .form-control {
+        color: $gray-200;
+        background-color: $gray-900;
+        border-color: $gray-800;
+
+        &.disabled {
+            background-color: $gray-700 !important;
+            border-color: $gray-600 !important;
+        }
+    }
+
+    .form-select {
+        color: $gray-200;
+        background-color: $gray-900;
+        border-color: $gray-800;
+        background-image: escape-svg(
+            url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$gray-500}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>")
+        );
+    }
+
+    .form-check-input {
+        background-color: $gray-700;
+        border-color: $gray-600;
+
+        &:checked {
+            background-color: $primary;
+            border-color: $primary;
+            // Overrides Bootstrap's dark mode image to ensure visibility
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e") !important;
+        }
+    }
+    
+    .form-radio-outline {
+        .form-check-input:checked {
+            &:after {
+                color: $primary;
+            }
+        }
+    }
+
+    .form-switch {
+        .form-check-input {
+            background-image: escape-svg($form-switch-checked-bg-image);
+        }
+    }
+
+    .input-group-text {
+        background-color: $gray-800;
+        border-color: $gray-800;
+        color: $gray-400;
+    }
+
+    .form-control {
+        &::-webkit-file-upload-button {
+            background-color: $gray-800;
+            color: $gray-400;
+        }
+
+        &:hover:not(:disabled):not([readonly])::-webkit-file-upload-button {
+            background-color: $gray-700;
+        }
+    }
+    
+    .card-radio {
+        background-color: $gray-900;
+        border-color: $gray-700;
+    }
+}
+
+// Apply dark mode mixin
+body[data-layout-mode='dark'] {
+    @include dark-mode-forms;
+}

@@ -1,0 +1,127 @@
+<div class="inner-section d-flex align-items-center justify-content-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-7">
+        <div class="card p-4 rounded-3 shadow-sm">
+          <div class="card-body">
+            <div class="text-center mb-4">
+              <h3 class="mb-0 fw-semibold text-secondary">{{ 'CREATE AN ACCOUNT' | translate }}</h3>
+              <p class="text-muted small">{{ 'FILL OUT THE FORM TO GET STARTED' | translate }}</p>
+            </div>
+
+            <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+              <div class="row">
+                <div class="col-md-6 mb-2">
+                  <label for="firstName" class="form-label" appRequiredLabel>{{ 'FIRST NAME' | translate }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    formControlName="firstName"
+                    [ngClass]="{ 'is-invalid': firstName?.invalid && (firstName?.dirty || firstName?.touched) }"
+                    [placeholder]="'FIRST NAME PLACEHOLDER' | translate"
+                  />
+                  <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)" class="invalid-feedback">
+                    {{ 'FIRST NAME IS REQUIRED' | translate }}
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label for="lastName" class="form-label" appRequiredLabel>{{ 'LAST NAME' | translate }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    formControlName="lastName"
+                    [ngClass]="{ 'is-invalid': lastName?.invalid && (lastName?.dirty || lastName?.touched) }"
+                    [placeholder]="'LAST NAME PLACEHOLDER' | translate"
+                  />
+                  <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)" class="invalid-feedback">
+                    {{ 'LAST NAME IS REQUIRED' | translate }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-2">
+                  <label for="email" class="form-label" appRequiredLabel>{{ 'EMAIL ADDRESS' | translate }}</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    formControlName="email"
+                    [ngClass]="{ 'is-invalid': email?.invalid && (email?.dirty || email?.touched) }"
+                    [placeholder]="'EMAIL ADDRESS PLACEHOLDER' | translate"
+                  />
+                  <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="invalid-feedback">
+                    <div *ngIf="email?.errors?.['required']">{{ 'EMAIL IS REQUIRED' | translate }}</div>
+                    <div *ngIf="email?.errors?.['email']">{{ 'PLEASE ENTER A VALID EMAIL ADDRESS' | translate }}</div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label for="mobileNumber" class="form-label" appRequiredLabel>{{ 'MOBILE NUMBER' | translate }}</label>
+                  <app-mobile-input formControlName="mobileNumber"
+                    [ngClass]="{ 'is-invalid': mobileNumber?.invalid && (mobileNumber?.dirty || mobileNumber?.touched) }"
+                  ></app-mobile-input>
+                  <div *ngIf="mobileNumber?.invalid && (mobileNumber?.dirty || mobileNumber?.touched)" class="invalid-feedback">
+                    <div *ngIf="mobileNumber?.errors?.['required']">{{ 'MOBILE NUMBER IS REQUIRED' | translate }}</div>
+                    <div *ngIf="mobileNumber?.errors?.['pattern']">{{ 'PLEASE ENTER A VALID 10-DIGIT NUMBER' | translate }}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <div class="col-md-6 mb-2">
+                  <label class="form-label d-block" appRequiredLabel>{{ 'GENDER' | translate }}</label>
+                  <div class="d-flex gap-3">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="male" value="Male" formControlName="gender">
+                      <label class="form-check-label" for="male">{{ 'MALE' | translate }}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="female" value="Female" formControlName="gender">
+                      <label class="form-check-label" for="female">{{ 'FEMALE' | translate }}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="other" value="Other" formControlName="gender">
+                      <label class="form-check-label" for="other">{{ 'OTHER' | translate }}</label>
+                    </div>
+                  </div>
+                  <div *ngIf="gender?.invalid && (gender?.dirty || gender?.touched)" class="text-danger small mt-1">
+                    {{ 'GENDER IS REQUIRED' | translate }}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <re-captcha formControlName="recaptchaReactive"
+                    [ngClass]="{ 'is-invalid': recaptchaReactive?.invalid && (recaptchaReactive?.dirty || recaptchaReactive?.touched) }">
+                  </re-captcha>
+                  <div *ngIf="recaptchaReactive?.invalid && (recaptchaReactive?.dirty || recaptchaReactive?.touched)"
+                    class="text-danger small mt-1">
+                    {{ 'PLEASE CONFIRM YOU ARE NOT A ROBOT' | translate }}
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="d-grid mb-2">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg fw-semibold"
+                  [disabled]="signupForm.invalid"
+                >
+                  {{ 'SIGN UP' | translate }}
+                </button>
+              </div>
+
+              <div class="text-center mt-4">
+                <p class="text-muted small">{{ 'ALREADY HAVE AN ACCOUNT' | translate }}
+                  <a routerLink="/pages/auth/login" class="text-info fw-semibold">{{ 'LOG IN' | translate }}</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

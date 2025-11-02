@@ -1,0 +1,347 @@
+body[data-layout-mode="dark"] {
+  background-color: $body-bg-dark;
+  color: $body-color-dark;
+
+  // Navbar
+  .navbar {
+    background-color: $navbar-bg-dark !important;
+    .navbar-brand, .nav-link {
+      color: $gray-800-dark !important;
+    }
+  }
+
+  // Headings
+  h1, h2, h3, h4, h5, h6 {
+    color: $gray-900-dark !important;
+  }
+
+  // Body text
+  p, span, li, div, label {
+    color: $gray-800-dark !important;
+  }
+
+  // Muted text (like sub-labels, descriptions)
+  .text-muted,
+  small {
+    color: lighten($gray-600-dark, 25%) !important;
+  }
+
+  // Cards & Panels
+  .card, .modal-content, .offcanvas {
+    background-color: $card-bg-dark;
+    color: $gray-800-dark !important;
+    border-color: $card-border-color-dark;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  }
+
+  // Inputs
+  .form-control, .form-select {
+    background-color: $input-bg-dark !important;
+    color: $gray-900-dark !important;
+    border-color: $input-border-color-dark;
+
+    &::placeholder {
+      color: lighten($input-placeholder-color-dark, 20%) !important;
+    }
+  }
+
+  // Buttons
+  .btn {
+    font-weight: 500;
+  }
+  .btn-light {
+    background-color: $gray-200-dark;
+    color: $black !important;
+  }
+  .btn-outline-light {
+    color: $white !important;
+    border-color: $gray-600-dark !important;
+
+    &:hover {
+      background-color: $primary !important;
+      border-color: $primary !important;
+      color: $white !important;
+    }
+  }
+
+  // --- Link, Nav-Link, and List Item Styles ---
+  a, .nav-link, .list-group-item {
+    color: $gray-800-dark !important;
+    i.fa {
+      color: $gray-600-dark;
+    }
+    
+    &:hover {
+      color: $primary !important;
+      i.fa {
+        color: $primary !important;
+      }
+    }
+
+    &.active {
+      color: $primary !important;
+      // background-color: rgba($primary, 0.15) !important;
+      // border-color: $primary !important;
+      
+      i.fa {
+        color: $primary !important;
+      }
+      
+      small {
+        color: $primary !important;
+      }
+
+      &.btn, &.btn-primary {
+        background-color: $primary !important;
+        color: $white !important;
+        i.fa {
+          color: $white !important;
+        }
+      }
+    }
+  }
+  
+  .navbar-nav .nav-link {
+    color: $gray-800-dark !important;
+    &:hover {
+      color: $gray-900-dark !important;
+    }
+  }
+
+  .btn-primary i.fa,
+  .btn-outline-primary i.fa {
+    color: $white !important;
+  }
+  
+  .list-group-item.active {
+    background-color: $primary !important;
+    color: $white !important;
+    border-color: $primary !important;
+    i.fa {
+      color: $white !important;
+    }
+    small {
+      color: $white !important;
+    }
+  }
+  .list-group-item.active:hover {
+    background-color: darken($primary, 5%) !important;
+    border-color: darken($primary, 5%) !important;
+    color: $white !important;
+    i.fa {
+      color: $white !important;
+    }
+    small {
+      color: $white !important;
+    }
+  }
+
+  // --- Styles for bg-white and bg-light classes ---
+  .bg-white, .bg-light {
+    background-color: $card-bg-dark !important;
+    color: $gray-800-dark !important;
+    
+    *, h1, h2, h3, h4, h5, h6, p, span, a, small {
+      color: $gray-800-dark !important;
+    }
+    .text-muted {
+      color: lighten($gray-600-dark, 25%) !important;
+    }
+  }
+
+  // Accordion fix
+  .accordion-button {
+    color: $gray-800-dark !important;
+    
+    // --- Accordion chevron fix ---
+    &::after {
+      filter: invert(1) grayscale(100%) brightness(200%); // Makes the chevron white
+    }
+    
+    &:not(.collapsed) {
+      background-color: rgba($primary, 0.15) !important;
+      color: $primary !important;
+      &::after {
+      
+        transform: rotate(-180deg); // Keeps the icon's original rotation
+      }
+    }
+  }
+
+  // --- Secondary Button Fix ---
+  .btn-secondary,
+  .btn-outline-secondary {
+    background-color: $gray-300-dark !important;
+    color: $gray-900-dark !important;
+    border-color: $gray-500-dark !important;
+
+    &:hover, &:focus {
+      background-color: $gray-400-dark !important;
+      color: $white !important;
+      border-color: $gray-600-dark !important;
+    }
+
+    &:disabled, &.disabled {
+      background-color: $gray-200-dark !important;
+      color: $gray-600-dark !important;
+      border-color: $gray-400-dark !important;
+    }
+  }
+
+  // --- Cancel button style (outline-danger / outline-secondary) ---
+  .btn-outline-danger {
+    color: #ff6b6b !important;
+    border-color: #ff6b6b !important;
+    &:hover {
+      background-color: #ff6b6b !important;
+      color: $white !important;
+    }
+  }
+
+  // --- Close Button (modal / offcanvas / alerts) ---
+  .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // --- Dropdown Menu ---
+  .dropdown-menu {
+    background-color: $card-bg-dark !important;
+    border-color: $card-border-color-dark !important;
+
+    .dropdown-item {
+      color: $gray-800-dark !important;
+
+      &:hover, &:focus {
+        background-color: rgba($primary, 0.15) !important;
+        color: $primary !important;
+      }
+    }
+  }
+
+  // --- SweetAlert2 popup ---
+  .swal2-popup {
+    background: $card-bg-dark !important;
+    color: $gray-800-dark !important;
+    border: 1px solid $card-border-color-dark !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  }
+  .swal2-title, .swal2-content {
+    color: $gray-900-dark !important;
+  }
+  .swal2-confirm {
+    background-color: $primary !important;
+    border-color: $primary !important;
+    color: $white !important;
+  }
+  .swal2-cancel {
+    background-color: $gray-300-dark !important;
+    color: $white !important;
+    border-color: $gray-500-dark !important;
+  }
+
+  // --- Flatpickr ---
+  .flatpickr-calendar {
+    background: $card-bg-dark !important;
+    border: 1px solid $card-border-color-dark !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.7) !important;
+  }
+  .flatpickr-day {
+    color: $gray-800-dark !important;
+    &.today {
+      border-color: $primary !important;
+      color: $primary !important;
+    }
+    &.selected, &.startRange, &.endRange {
+      background: $primary !important;
+      border-color: $primary !important;
+      color: $white !important;
+    }
+    &:hover {
+      background: rgba($primary, 0.15) !important;
+      color: $primary !important;
+    }
+  }
+  .flatpickr-months, .flatpickr-weekday {
+    background: $card-bg-dark !important;
+    color: $gray-800-dark !important;
+  }
+
+  // --- Card headers that use white by default ---
+  .card-header {
+    background-color: $card-bg-dark !important;
+    border-color: $card-border-color-dark !important;
+    color: $gray-900-dark !important;
+  }
+
+  // Skeleton loader styles
+  ngx-skeleton-loader {
+    --ngx-skeleton-loader-border-radius: 8px;
+    --ngx-skeleton-loader-background-color: #2a2a2a;
+    --ngx-skeleton-loader-highlight-color: linear-gradient(
+      90deg,
+      rgba(42, 42, 42, 0) 0%,
+      rgba(80, 80, 80, 0.6) 50%,
+      rgba(42, 42, 42, 0) 100%
+    );
+
+    &.primary-shimmer {
+      --ngx-skeleton-loader-highlight-color: linear-gradient(
+        90deg,
+        rgba(42, 42, 42, 0) 0%,
+        rgba($primary, 0.3) 50%,
+        rgba(42, 42, 42, 0) 100%
+      );
+    }
+  }
+
+  // --- CUSTOM STYLES FOR BOOKING PAGE ---
+  .list-group-item {
+    background-color: $card-bg-dark;
+    border: 1px solid $card-border-color-dark;
+    color: $gray-800-dark;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 0.5rem;
+    border-radius: $border-radius;
+    i.fa {
+      color: $gray-600-dark;
+    }
+  }
+
+  .list-group-item:hover {
+    background-color: $gray-200-dark;
+    color: $gray-900-dark !important;
+    border-color: $gray-200-dark;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    i.fa {
+      color: $gray-900-dark !important;
+    }
+  }
+  
+  .list-group-item.active {
+    background-color: $primary !important;
+    color: $white !important;
+    border-color: $primary !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .service-list-container .list-group-item {
+    background-color: $card-bg-dark;
+    border: 1px solid $card-border-color-dark;
+    h6, p, small {
+      color: $gray-800-dark !important;
+    }
+  }
+
+  .service-list-container .list-group-item:hover {
+    background-color: $gray-200-dark;
+    border-color: $gray-200-dark;
+    h6, p, small {
+      color: $gray-900-dark !important;
+    }
+  }
+}

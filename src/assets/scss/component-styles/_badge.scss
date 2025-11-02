@@ -1,0 +1,93 @@
+//
+// _badge.scss
+//
+// Styles for badge components, based on the customer portal's variables.
+//
+
+//
+// -------------------- Soft Badges --------------------
+//
+
+// Soft badge variant mixin
+@mixin badge-variant-soft($bg) {
+    color: $bg;
+    background-color: rgba($bg, 0.1);
+}
+
+// Generate soft badge classes for all theme colors
+@each $color, $value in $theme-colors {
+    .badge-soft-#{$color} {
+        @include badge-variant-soft($value);
+    }
+}
+
+//
+// -------------------- Outline Badges --------------------
+//
+
+// Outline badge variant mixin
+@mixin badge-variant-outline($bg) {
+    color: $bg;
+    border: 1px solid $bg;
+    background-color: transparent;
+}
+
+// Generate outline badge classes for all theme colors
+@each $color, $value in $theme-colors {
+    .badge-outline-#{$color} {
+        @include badge-variant-outline($value);
+    }
+}
+
+//
+// -------------------- Badge Colors --------------------
+//
+
+.badge {
+    // Ensure light-colored badges have dark text
+    &.bg-light,
+    &.badge-soft-light,
+    &.badge-outline-light {
+        color: $dark;
+    }
+}
+
+//
+// -------------------- Dark Mode Styles --------------------
+//
+
+// Use a dedicated mixin for all dark mode badge styles
+@mixin dark-mode-badges {
+    .badge {
+        &.bg-light,
+        &.badge-soft-light,
+        &.badge-outline-light {
+            color: $gray-400; // Using an existing gray variable for consistency
+        }
+    }
+
+    .badge-soft-dark {
+        color: $gray-400; // Using an existing gray variable for consistency
+    }
+    
+    // Additional dark mode styles for badges for better visibility
+    .badge-soft-light {
+        background-color: rgba($gray-600, 0.2);
+    }
+    .badge-outline-light {
+        color: $gray-400;
+        border-color: $gray-500;
+    }
+    .badge-soft-dark {
+        background-color: rgba($gray-700, 0.25);
+    }
+    .badge-outline-dark {
+        color: $gray-500;
+        border-color: $gray-600;
+    }
+}
+
+// Apply the dark mode mixin
+body[data-layout-mode=dark] {
+    @include dark-mode-badges;
+}

@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <h5 class="modal-title">Select a Center</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="centerList modal-body">
+    <!-- Search  -->
+    <div class="input-group search-input-group mb-3 w-100 mx-auto">
+               <span class="input-group-text"><i class="fa fa-search"></i></span>
+               <input 
+                   type="text" 
+                   class="form-control" 
+                   placeholder="Search by name..."
+                   [(ngModel)]="searchTerm"
+                   (input)="searchCenters()"
+               >
+       </div>
+
+    <div class="center-list-container">
+        <div *ngIf="loading">
+            <ngx-skeleton-loader count="6" appearance="line" [theme]="{ height: '50px', width: '100%', 'border-radius': '12px' }"></ngx-skeleton-loader>
+        </div>
+         <ng-container *ngIf="!loading">
+             <div class="list-group">
+                 <div
+                     class="list-group-item list-group-item-action cursor-pointer"
+                     *ngFor="let center of filteredCenters"
+                     (click)="selectCenter(center)"
+                 >
+                     <div class="d-flex w-100 justify-content-between">
+                         <h5 class="mb-1 fw-semibold">{{ center.name }}</h5>
+                         <small class="text-muted">{{ center.openingTime }} - {{ center.closingTime }}</small>
+                     </div>
+                     <p class="mb-1 text-muted small">{{ center.address }}</p>
+                 </div>
+             </div>
+         </ng-container>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+// src/assets/scss/_dropdown.scss
+
+
+.dropdown {
+  .btn.dropdown-toggle {
+    // Basic dropdown button style
+    background-color: transparent;
+    border: 1px solid $gray-400;
+    color: $secondary;
+    padding: $btn-padding-y $btn-padding-x;
+    font-weight: $btn-font-weight;
+    border-radius: $border-radius;
+    transition: $transition-base;
+    box-shadow: none;
+
+    &:hover,
+    &.active {
+      border-color: $primary;
+      color: $primary;
+      background-color: $primary-100;
+      box-shadow: $box-shadow-sm;
+    }
+  }
+}
+
+.dropdown-menu {
+  // Container for the dropdown menu
+  padding: $spacer * 0.5;
+  margin-top: $spacer * 0.5 !important;
+  border-radius: $border-radius-lg;
+  border: 1px solid $gray-300;
+  box-shadow: $box-shadow-lg;
+  background-color: $white;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  transform-origin: top;
+
+  &.show {
+    animation-name: fadeInScale;
+  }
+}
+
+.dropdown-item {
+  // Style for individual dropdown items
+  color: $gray-700;
+  font-weight: $font-weight-medium;
+  padding: $spacer * 0.5 $spacer;
+  border-radius: $border-radius;
+  transition: $transition-base;
+
+  &:hover,
+  &.active {
+    color: $primary;
+    background-color: $primary-100;
+    font-weight: $font-weight-semibold;
+  }
+
+  &.active {
+    z-index: 1; // Ensures the active item is not hidden by other elements
+  }
+}
+
+// Custom animation for a modern feel
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

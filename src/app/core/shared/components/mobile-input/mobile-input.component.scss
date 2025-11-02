@@ -1,0 +1,77 @@
+@import "variables";
+
+.mobile-input-group {
+    // This is the container for the entire component.
+    // We will let this container handle the unified border and focus state.
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    transition: all 0.2s ease-in-out;
+
+    // Remove the border and background from the ng-select itself
+    // so it doesn't create a double border with the parent container.
+    .ng-select-code {
+        width: auto;
+        min-width: 90px;
+        flex: 0 0 auto;
+
+        ::ng-deep .ng-select-container {
+            border: none; // Crucial fix: Remove its internal border
+            background-color: transparent;
+            border-radius: 0;
+            padding: 0;
+            height: 100%;
+            min-height: auto;
+        }
+
+        // Hide the default ng-select focus outline and let the container's shadow handle it
+        &.ng-select-focused ::ng-deep .ng-select-container {
+            box-shadow: none !important;
+        }
+
+        // Style the dropdown panel for better readability
+        ::ng-deep .ng-dropdown-panel {
+            min-width: 280px; // Make the dropdown panel wider
+            border-radius: $border-radius;
+            box-shadow: $box-shadow-lg;
+
+            // Style individual options
+            .ng-option {
+                font-size: $font-size-base;
+                font-weight: $font-weight-normal;
+                padding: 0.5rem 1rem;
+                
+                // Add hover and active styles
+                &.ng-option-selected {
+                    background-color: $primary-100;
+                    color: $primary;
+                    font-weight: $font-weight-semibold;
+                }
+                &.ng-option-marked {
+                    background-color: $gray-200;
+                    color: $gray-800;
+                }
+            }
+        }
+    }
+
+    // Style the main mobile number input field
+    .form-control {
+        flex: 1;
+        border: none; // Crucial fix: Remove its border as well
+        border-radius: 0;
+        background-color: transparent;
+
+        &:focus {
+            box-shadow: none !important; // Remove its focus shadow
+            border-color: transparent;
+            z-index: 1;
+        }
+    }
+
+    // Unify the focus state for the entire component
+    // This provides the single, elegant outline you want
+    &:focus-within {
+        border-color: rgba($primary, 0.6);
+        box-shadow: 0 0 0 0.25rem rgba($primary, 0.15);
+    }
+}

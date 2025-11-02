@@ -1,0 +1,77 @@
+@import "variables";
+@import "dark-variables";
+
+:host {
+  display: block;
+  font-family: $font-primary;
+}
+
+// Avatar override (only profile-page specific tweaks, keep base in general.scss)
+.profile-page .avatar {
+  font-weight: 700;
+  color: $white;
+}
+
+// Sticky bottom navigation (mobile only)
+.profile-bottom-nav {
+  position: fixed;
+  z-index: 1029;  // use variable instead of hardcoded 99
+  bottom: 0; left: 0; right: 0;
+  background: $white;
+  border-top: 1px solid $gray-300;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+
+  .nav-item {
+    text-align: center;
+    flex: 1;
+    color: $gray-600;
+    transition: $transition-base;
+
+    &.active {
+      color: $primary;
+    }
+
+    i {
+      display: block;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+
+// Dark mode styles
+:host-context(body[data-layout-mode="dark"]) {
+  .profile-page {
+    aside {
+      .card {
+        background-color: $card-bg-dark !important;
+        border: 1px solid $card-border-color-dark;
+      }
+      .list-group-item {
+        background-color: transparent;
+        color: $gray-800-dark;
+        border-color: $card-border-color-dark;
+        
+        &:hover {
+          background-color: $gray-100-dark;
+        }
+
+        &.active {
+          background-color: $primary !important;
+          color: $white !important;
+          border-color: $primary !important;
+          box-shadow: none;
+          .fa {
+            color: $white !important;
+          }
+        }
+      }
+    }
+
+    .profile-bottom-nav{
+      background-color: $card-bg-dark !important;
+    }
+  }
+}

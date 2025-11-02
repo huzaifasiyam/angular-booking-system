@@ -1,0 +1,47 @@
+<div class="modal-header border-0 pb-0">
+  <h5 class="modal-title fw-bold text-center w-100">Rate Your Service</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+
+<div class="modal-body text-center pt-2">
+  <p class="text-muted small mb-2">How was your experience with **{{ serviceName }}**?</p>
+  
+  <div class="rating-emoji mb-3">
+    <span class="fa-5x fa-fw" [ngClass]="getEmojiClass(rating)"></span>
+  </div>
+
+  <div class="rating-stars fa-2x mb-4 d-flex justify-content-center">
+    <div class="rating-container">
+      <ng-container *ngFor="let i of [1, 2, 3, 4, 5]">
+        <div class="cursor-pointer d-inline-block position-relative"
+             (click)="setRating(i, $event)"
+             (mousemove)="hoverRating = calculateRating($event, i)"
+             (mouseleave)="hoverRating = 0">
+          <i class="far fa-star"></i>
+          <i class="fas fa-star position-absolute top-0 start-0 text-warning"
+             [style.width]="getStarFillPercentage(i) + '%'"
+             style="overflow: hidden;"></i>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <textarea 
+      class="form-control" 
+      rows="3" 
+      placeholder="Write a comment..." 
+      [(ngModel)]="comment">
+    </textarea>
+  </div>
+</div>
+
+<div class="modal-footer border-0 pt-0">
+  <button 
+    type="button" 
+    class="btn btn-primary btn-lg w-100 fw-bold" 
+    [disabled]="rating === 0" 
+    (click)="submitRating()">
+    Submit Rating
+  </button>
+</div>

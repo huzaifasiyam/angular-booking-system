@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-12">
+    <div class="accordion-wrapper">
+      <div class="accordion mb-3 custom-theme-accordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button 
+              type="button" 
+              class="accordion-button" 
+              [class.collapsed]="!isOpen"
+              (click)="toggle()"
+              [attr.aria-expanded]="isOpen"
+            >
+              <span *ngIf="title">{{ title }}</span>
+              <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+            </button>
+          </h2>
+          <!-- 👇 Important: needs "collapse" class -->
+          <div class="accordion-collapse collapse" [class.show]="isOpen">
+            <div class="accordion-body">
+              <ng-content></ng-content>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,161 @@
+<nav class="navbar navbar-expand-lg bg-light fixed-top shadow-sm py-3">
+  <div class="container d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <a class="navbar-brand text-secondary fw-semibold me-3" routerLink="/">
+        <span class="fs-4">{{ 'STYLECRAFT' | translate }}</span>
+      </a>
+      <button type="button"
+        class="btn btn-primary font-size-12 fw-semibold text-white px-3 py-2 rounded-pill shadow-sm d-flex align-items-center"
+        routerLink="/pages/book">
+        <i class="fa fa-calendar-check me-2"></i>
+        <span class="d-none d-sm-inline">{{ 'BOOK NOW' | translate }}</span>
+        <span class="d-inline d-sm-none ">{{ 'BOOK' | translate }}</span>
+      </button>
+    </div>
+
+    <button class="navbar-toggler border-0 d-lg-none" type="button" data-bs-toggle="offcanvas"
+      data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="d-none d-lg-flex align-items-center">
+      <div class="d-flex align-items-center me-3">
+        <div ngbDropdown class="d-inline-block me-2">
+          <button type="button" class="btn btn-outline-light fw-semibold" id="languageDropdownDesktop"
+            ngbDropdownToggle>
+            <i class="fa fa-globe me-2"></i>{{ currentLanguage | uppercase }}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="languageDropdownDesktop">
+            <button ngbDropdownItem (click)="changeLanguage('en')">{{ 'ENGLISH' | translate }}</button>
+            <button ngbDropdownItem (click)="changeLanguage('fr')">Français</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline-light fw-semibold" (click)="openCenterSelectionModal()">
+          <i class="fa fa-map-marker-alt me-2"></i>{{ 'SELECT CENTER' | translate }}
+        </button>
+      </div>
+      <div>
+        <ng-container *ngIf="!isLoggedIn; else profileDropdownDesktop">
+          <button type="button" class="btn btn-light fw-semibold me-2" routerLink="/pages/auth/login">
+            {{ 'LOGIN' | translate }}
+          </button>
+          <button type="button" class="btn btn-primary fw-semibold text-white" routerLink="/pages/auth/signup">
+            {{ 'SIGN UP' | translate }}
+          </button>
+        </ng-container>
+        <ng-template #profileDropdownDesktop>
+          <div ngbDropdown>
+            <button class="btn btn-outline-light fw-semibold d-flex align-items-center p-2 border-0"
+              id="desktopUserDropdown" ngbDropdownToggle>
+              <div
+                class="avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2"
+                style="width: 32px; height: 32px">
+                {{ currentUser?.firstName.charAt(0) }}
+              </div>
+              <span>{{ currentUser?.firstName }}</span>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="desktopUserDropdown" class="dropdown-menu-end">
+              <button ngbDropdownItem (click)="goToProfile()">
+                <i class="fa fa-user me-2"></i> My Profile
+              </button>
+              <button ngbDropdownItem (click)="goToAppointments()">
+                <i class="fa fa-calendar me-2"></i> My Appointments
+              </button>
+              <button ngbDropdownItem (click)="logout()">
+                <i class="fa fa-sign-out-alt me-2"></i> Logout
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+         <button type="button" class="btn btn-outline-light fw-semibold ms-2" (click)="toggleDarkMode()">
+          <i class="fa" [ngClass]="{
+       'fa-moon': theme === 'light',
+       'fa-sun': theme === 'dark'
+     }"></i>
+        </button>
+    </div>
+  </div>
+
+  <!-- Offcanvas (MOBILE ONLY) -->
+  <div class="offcanvas offcanvas-end d-lg-none" tabindex="-1" id="mobileOffcanvas"
+    aria-labelledby="mobileOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="mobileOffcanvasLabel">{{ 'MENU' | translate }}</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div *ngIf="isLoggedIn" class="d-flex align-items-center p-2 rounded bg-light mb-3">
+        <div class="avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+          style="width: 25px; height: 25px">
+          {{currentUser?.firstName.charAt(0)}}
+        </div>
+        <div class="d-flex flex-column">
+          <span class="fw-semibold">{{currentUser?.firstName}}</span>
+          <small class="text-muted">{{currentUser?.email}}</small>
+        </div>
+      </div>
+
+      <ul class="list-group list-group-flush flex-grow-1">
+        <ng-container *ngIf="isLoggedIn">
+          <li class="list-group-item d-flex align-items-center px-2 py-3" data-bs-dismiss="offcanvas"
+            (click)="goToProfile()">
+            <i class="fa fa-user me-3 text-primary"></i>
+            <span class="fw-medium">My Profile</span>
+          </li>
+          <li class="list-group-item d-flex align-items-center px-2 py-3" data-bs-dismiss="offcanvas"
+            (click)="goToAppointments()">
+            <i class="fa fa-calendar me-3 text-primary"></i>
+            <span class="fw-medium">My Appointments</span>
+          </li>
+        </ng-container>
+        <li class="list-group-item d-flex align-items-center px-2 py-3" data-bs-dismiss="offcanvas"
+          (click)="openCenterSelectionModal()">
+          <i class="fa fa-map-marker-alt me-3 text-primary"></i>
+          <span class="fw-medium">{{ 'SELECT CENTER' | translate }}</span>
+        </li>
+      </ul>
+
+      <hr class="my-4">
+
+      <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mb-3">
+        <button type="button" class="btn btn-outline-light fw-semibold py-3 rounded-2 flex-grow-1"
+          (click)="toggleDarkMode()">
+          <i class="fa me-2" [ngClass]="{'fa-moon': theme === 'light', 'fa-sun': theme === 'dark'}"></i>
+          <span class="d-none d-md-inline">{{ theme === 'light' ? 'Dark Mode' : 'Light Mode' }}</span>
+        </button>
+
+        <div ngbDropdown class="d-block flex-grow-1">
+          <button type="button" class="btn btn-outline-light fw-semibold w-100 py-3 rounded-2"
+            id="languageDropdownMobile" ngbDropdownToggle>
+            <i class="fa fa-globe me-2"></i>{{ 'LANGUAGE' | translate }}: {{ currentLanguage | uppercase }}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="languageDropdownMobile" class="dropdown-menu-start w-100">
+            <button ngbDropdownItem (click)="changeLanguage('en')">English</button>
+            <button ngbDropdownItem (click)="changeLanguage('fr')">Français</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-auto pt-3">
+        <ng-container *ngIf="!isLoggedIn; else logoutButton">
+          <button data-bs-dismiss="offcanvas" type="button" class="btn btn-light fw-semibold w-100 mb-2 py-3 rounded-2"
+            routerLink="/pages/auth/login">
+            {{ 'LOGIN' | translate }}
+          </button>
+          <button data-bs-dismiss="offcanvas" type="button"
+            class="btn btn-primary fw-semibold text-white w-100 py-3 rounded-2" routerLink="/pages/auth/signup">
+            {{ 'SIGN UP' | translate }}
+          </button>
+        </ng-container>
+        <ng-template #logoutButton>
+          <button data-bs-dismiss="offcanvas" type="button"
+            class="btn btn-outline-danger fw-semibold w-100 py-3 rounded-2" (click)="logout()">
+            <i class="fa fa-sign-out-alt me-2"></i>{{ 'LOGOUT' | translate }}
+          </button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+</nav>

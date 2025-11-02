@@ -1,0 +1,13 @@
+.center-list-container {
+  max-height: 400px; /* Adjust this value as needed */
+  overflow-y: auto;
+  padding-right: 15px; /* Add padding to prevent content from touching scrollbar */
+}
+
+.centerList.modal-body {
+  height: 500px; 
+  overflow-y: auto; 
+  // &::-webkit-scrollbar {
+  //   display: none;
+  // }
+}

@@ -1,0 +1,282 @@
+//
+// genaral.scss
+//
+
+html {
+  scroll-padding-top: 66px;
+}
+
+body {
+  font-family: $font-primary;
+  color: $body-color;
+  background: $body-bg;
+  line-height: $line-height-base;
+  font-size: $font-size-base;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a,
+a:visited,
+a:active {
+  font-family: $font-primary;
+  text-decoration: none !important;
+  outline: none;
+
+  @if variable-exists(link-color) {
+    color: $link-color;
+  }
+
+  @else {
+    color: $info;
+  }
+}
+
+a:hover {
+  color: lighten($info, 12%);
+  text-decoration: underline;
+}
+
+p {
+  font-family: $font-primary;
+  margin-bottom: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $font-secondary;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  margin-bottom: $headings-margin-bottom;
+}
+
+h5,
+h6 {
+  font-family: $font-primary;
+  margin-bottom: ($spacer * 0.25);
+}
+
+.row>* {
+  position: relative;
+}
+
+.rounded-3 {
+  border-radius: $border-radius-lg !important;
+}
+
+/* Responsive container cap (optional override) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: $container-max-width;
+  }
+}
+
+/* Custom utility classes */
+.inner-section {
+  padding-top: 160px !important;
+  min-height: calc(100vh - 100px);
+
+  @media (max-width: 991px) {
+    padding-top: 110px !important;
+  }
+}
+
+.bg-darker {
+  background-color: $darker !important;
+}
+
+.border-info {
+  border-color: $info !important;
+}
+
+.border-secondary {
+  border-color: $secondary !important;
+}
+
+.small {
+  font-size: small !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.bg-primary-light {
+ background-color: $primary-100 !important;
+}
+
+/* Styling for the whole scrollbar */
+::-webkit-scrollbar {
+  width: 5px; /* or any width you prefer for a sleek look */
+}
+
+/* Styling for the scrollbar track (the background) */
+::-webkit-scrollbar-track {
+  background:  #f1f1f1;
+  border-radius: 5px;
+}
+
+/* Styling for the scrollbar thumb (the draggable handle) */
+::-webkit-scrollbar-thumb {
+  background: $gray-300;
+  border-radius: 5px;
+}
+
+/* Hover effect on the thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-color, #555);
+}
+
+.list-group-item {
+  border: 1px solid $gray-300;
+  margin-bottom: 0.5rem;
+  color: $gray-700;
+
+  // Round only the top of the first item
+  &:first-child {
+    border-top-left-radius: $border-radius-lg;
+    border-top-right-radius: $border-radius-lg;
+  }
+
+  // Round only the bottom of the last item
+  &:last-child {
+    border-bottom-left-radius: $border-radius-lg;
+    border-bottom-right-radius: $border-radius-lg;
+  }
+
+  &:hover,
+  &.active {
+    box-shadow: $box-shadow-sm !important;
+    border-color: $primary !important;
+    color: $primary !important;
+    background-color: transparent;
+    z-index: 1; // ensures active item stands out
+  }
+}
+.list-group-item.active i.fa, .list-group-item:hover i.fa {
+  color: $primary;
+}
+
+.nav-pills {
+  .nav-link {
+    border: 1px solid $gray-400;
+    color: $dark;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: $border-radius-lg;
+    font-weight: $font-weight-medium;
+    transition: $transition-base;
+    background-color: $white;
+
+    i {
+      font-size: 0.95rem;
+      color: $dark;
+      margin-right: 0.35rem;
+    }
+
+    &:hover {
+      border-color: $primary;
+      color: $primary;
+      i {
+        color: $primary;
+      }
+      background-color: $primary-100;
+      box-shadow: $box-shadow-sm;
+    }
+
+    &.active {
+      border-color: $primary !important;
+      color: $primary !important;
+      background-color: $primary-100 !important;
+      box-shadow: $box-shadow-sm;
+
+      i {
+        color: $primary !important;
+      }
+    }
+  }
+}
+
+.offcanvas-bottom {
+  border-top-left-radius: $border-radius-lg;
+  border-top-right-radius:  $border-radius-lg;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+
+.offcanvas-footer {
+  background: $white;
+}
+
+.fixed-bottom {
+  z-index: 1029 !important;
+}
+
+/* Style for the search input group */
+.search-input-group {
+    max-width: 350px;
+    .form-control {
+        border-top-right-radius: $border-radius-pill;
+        border-bottom-right-radius: $border-radius-pill;
+    }
+    .input-group-text {
+        background-color: $white;
+        border-right: none;
+        border-top-left-radius: $border-radius-pill;
+        border-bottom-left-radius: $border-radius-pill;
+        color: $gray-500;
+    }
+}
+
+// --------------------------------
+// 3rd Party Overrides
+// --------------------------------
+
+// SweetAlert
+.swal2-confirm {
+  background-color: $primary !important;
+  border-color: $primary !important;
+  
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba($primary, 0.5) !important;
+  }
+}
+
+// Flatpickr
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange,
+.flatpickr-day.selected.inRange {
+  background-color: $primary !important;
+  border-color: $primary !important;
+  color: $white !important;
+}
+
+.avatar {
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: $primary;
+  color: $white;
+}
+
+// --------------------------------
+// Ngx-Skeleton-Loader Theming
+// --------------------------------
+
+// Or a simpler, direct approach
+ngx-skeleton-loader {
+  --ngx-skeleton-loader-border-radius: 8px;
+  --ngx-skeleton-loader-background-color: #{$primary-100};
+  --ngx-skeleton-loader-highlight-color: #{$primary};
+}
+
+
+@media (max-width: 991px) {
+  h3 {
+    font-size: 1.25rem !important;
+  }
+}

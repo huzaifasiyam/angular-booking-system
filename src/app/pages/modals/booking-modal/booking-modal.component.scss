@@ -1,0 +1,23 @@
+.artist-scroll-container {
+  // Enables horizontal scrolling for the container
+  overflow-x: auto; 
+  // Prevents the chip buttons from wrapping to the next line
+  white-space: nowrap; 
+  // Adds space for the scrollbar and better visual separation
+  padding-bottom: 10px; 
+  // Hides the scrollbar for a cleaner look on most browsers
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  // For Firefox
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.artist-scroll-container button {
+  flex: 0 0 auto; // Prevents the buttons from shrinking
+}
+
+// Adjust the icon spacing within the chip
+.artist-chip-button i {
+  margin-right: 0.25rem;
+}
