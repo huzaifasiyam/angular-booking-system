@@ -1,27 +1,50 @@
-# CustomerPortal
+# Customer Portal Booking System
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.
+A multilingual, full-featured customer booking portal for salons, spas, and skin-care clinics — built with **Angular 16+**, **TypeScript**, and **Bootstrap 5**.  
+Customers can browse services, add multiple treatments to a cart, and book appointments across multiple branches.  
+Payments are completed on-site after service rather than online.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🌟 Features
 
-## Code scaffolding
+- 🏢 **Multi-Branch Support:** Book appointments across multiple salon/spa branches.  
+- 🛒 **Cart System:** Add several services before confirming the booking.  
+- 🌐 **Multilingual:** English & French support via **ngx-translate**.  
+- 👤 **Customer Account Management:**  
+  - Signup / Login / Logout  
+  - Reset password  
+  - Profile editing & address management  
+- 📖 **Booking History:** View past bookings, cancel upcoming ones, and see service details.  
+- ⭐ **Service Ratings:** Customers can rate completed services.  
+- 📱 **Responsive Design:** Works seamlessly on mobile and desktop.  
+- 🔐 **Role-Based Access:** Separate dashboards for admin, branch manager, and customer (optional).  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🧰 Tech Stack
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+| Category | Technology |
+|-----------|-------------|
+| Framework | Angular 16+ |
+| Language | TypeScript |
+| Styling | Bootstrap 5, SCSS |
+| State Mgmt | RxJS |
+| i18n | ngx-translate (English / French) |
+| Tools | Git, Angular CLI, VS Code |
+| API | RESTful APIs Integration |
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## ⚙️ Installation & Setup
 
-## Running end-to-end tests
+```bash
+# Clone repository
+git clone https://github.com/huzaifasiyam/angular-booking-system
+cd customer-portal
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Install dependencies
+npm install
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Run the app
+ng serve
